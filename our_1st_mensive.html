@@ -3,181 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1st Mensiversary</title>
+    <title>Amplop dan Surat</title>
     <style>
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: #fef6f6;
-            margin: 0;
-            padding: 20px;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
+            background-color: #f8f8f8;
+            margin: 0;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            position: relative;
+            width: 90%;
+            max-width: 350px;
+            margin-bottom: 20px;
         }
 
         .envelope {
-            width: 600px;
-            height: 400px;
-            position: relative;
-            border: 2px solid #ff6f61;
-            border-radius: 15px;
-            overflow: hidden;
-            background-color: #fff;
-            box-shadow: 0 8px 16px rgba(255, 111, 97, 0.2);
-            margin-bottom: 20px;
-        }
-
-        .envelope-top {
-            width: 100%;
-            height: 120px;
-            background-color: #ff6f61;
-            position: absolute;
-            top: 0;
-            left: 0;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-            clip-path: polygon(50% 0, 0% 100%, 100% 100%);
-            transition: all 0.6s ease;
-            z-index: 2;
-        }
-
-        .envelope-body {
-            padding: 30px;
-            display: none;
-            overflow-y: auto;
-            max-height: 340px;
-        }
-
-        .open .envelope-body {
-            display: block;
-        }
-
-        .letter-content {
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-            line-height: 1.8;
-        }
-
-        h1 {
-            color: #ff6f61;
-            text-align: center;
-            margin-top: 0;
-            font-size: 28px;
-            margin-bottom: 25px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        }
-
-        p {
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            color: #444;
-            text-align: justify;
-        }
-
-        .signature {
-            text-align: right;
-            font-style: italic;
-            margin-top: 30px;
-            color: #ff6f61;
-            font-size: 18px;
-        }
-
-        .toggle-btn {
-            padding: 12px 25px;
-            background-color: #ff6f61;
-            border: none;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(255, 111, 97, 0.3);
-        }
-
-        .toggle-btn:hover {
-            background-color: #ff4a3a;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(255, 111, 97, 0.4);
-        }
-
-        .hearts {
             position: absolute;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: 1;
+            background: #fff;
+            border: 2px solid #c00;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .heart {
+        .envelope::before {
+            content: "";
             position: absolute;
-            width: 20px;
-            height: 20px;
-            opacity: 0;
-            animation: float 4s ease-in infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #c00;
+            clip-path: polygon(50% 0, 100% 100%, 0% 100%);
         }
 
-        .heart:before,
-        .heart:after {
-            content: '';
+        .letter {
+            display: none;
             position: absolute;
-            background-color: rgba(255, 111, 97, 0.3);
-            width: 10px;
-            height: 16px;
-            border-radius: 8px 8px 0 0;
-            transform: rotate(-45deg);
-            transform-origin: 0 100%;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            background: white;
+            border: 2px solid #c00;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            overflow-y: auto;
+            height: 75%;
         }
 
-        .heart:after {
-            transform: rotate(45deg);
-            transform-origin: 100% 100%;
+        .letter::before {
+            content: "❤";
+            font-size: 20px;
+            color: #c00;
+            position: absolute;
+            top: 10px;
+            left: 10px;
         }
 
-        @keyframes float {
-            0% {
-                transform: translateY(0);
-                opacity: 0;
-            }
-            50% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-100px);
-                opacity: 0;
-            }
+        .toggle-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #c00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
         }
 
-        @media (max-width: 650px) {
-            .envelope {
-                width: 90%;
-                height: 80vh;
+        .toggle-btn:hover {
+            background-color: #b00;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
             }
-            
-            .letter-content {
-                padding: 15px;
+
+            .letter {
+                padding: 10px;
             }
-            
-            h1 {
-                font-size: 24px;
-            }
-            
-            p {
+
+            .toggle-btn {
                 font-size: 14px;
+                padding: 8px 16px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="envelope" id="envelope">
-        <div class="hearts" id="hearts"></div>
-        <div class="envelope-top"></div>
-        <div class="envelope-body">
-            <div class="letter-content">
+    <div class="container" id="envelope">
+        <div class="envelope">
+            <div class="letter" id="letter">
                 <h1>✨ Heffy hamfy 1st Mensiversary, Teerak! ✨</h1>
                 <p>
                     Hai sayangku, hari ini adalah hari yang sangat spesial buat kita berdua. Udah sebulan kita lalui bersama, 
@@ -214,37 +142,12 @@
             </div>
         </div>
     </div>
-    <button class="toggle-btn" onclick="toggleEnvelope()">Buka Envelope</button>
+    <button class="toggle-btn" onclick="toggleLetter()">Buka Surat</button>
 
     <script>
-        function toggleEnvelope() {
-            const envelope = document.getElementById('envelope');
-            const envelopeTop = document.querySelector('.envelope-top');
-            
-            envelope.classList.toggle('open');
-            
-            if (envelope.classList.contains('open')) {
-                envelopeTop.style.clipPath = 'polygon(50% 0, 0% 0, 100% 0)';
-                createHearts();
-            } else {
-                envelopeTop.style.clipPath = 'polygon(50% 0, 0% 100%, 100% 100%)';
-            }
-
-            const btn = document.querySelector('.toggle-btn');
-            btn.textContent = envelope.classList.contains('open') ? "Tutup Envelope" : "Buka Envelope";
-        }
-
-        function createHearts() {
-            const heartsContainer = document.getElementById('hearts');
-            heartsContainer.innerHTML = '';
-            
-            for (let i = 0; i < 10; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDelay = Math.random() * 2 + 's';
-                heartsContainer.appendChild(heart);
-            }
+        function toggleLetter() {
+            const letter = document.getElementById('letter');
+            letter.style.display = letter.style.display === 'none' ? 'block' : 'none';
         }
     </script>
 </body>
